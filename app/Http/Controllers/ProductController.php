@@ -2,16 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     public function index(){
-        return "Works";
+        $products = Product::orderBy('year', 'ASC')->get();
+        return response()->json($products);
     }
 
     public function store(Request $request){
-        return true;
+        $product = new Product;
+        $product->name = $request->name;
+        $product->year = $request->year;
+        $product->price = $request->price;
+        $product->save();
+        return response()->json(['success' => 'Products Was Inserted Successfully']);
     }
 
 
