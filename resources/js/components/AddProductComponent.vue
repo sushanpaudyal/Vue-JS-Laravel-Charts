@@ -6,20 +6,20 @@
                     <div class="card-header">Example Component</div>
 
                     <div class="card-body">
-                        <form action="">
+                        <form @submit.prevent="createProduct">
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" id="name" name="name" class="form-control">
+                                <input v-model="product.name" type="text" id="name" name="name" class="form-control">
                             </div>
 
                             <div class="form-group">
                                 <label for="year">Year</label>
-                                <input type="number" id="year" name="year" class="form-control">
+                                <input v-model="product.year" type="number" id="year" name="year" class="form-control">
                             </div>
 
                             <div class="form-group">
                                 <label for="name">Price</label>
-                                <input type="number" id="price" name="price" class="form-control">
+                                <input v-model="product.price" type="number" id="price" name="price" class="form-control">
                             </div>
 
                             <div class="text-center">
@@ -35,8 +35,22 @@
 
 <script>
     export default {
+
+        data(){
+            return{
+                product: {}
+            }
+        },
+
         mounted() {
             console.log('Component mounted.')
+        },
+
+        methods: {
+            createProduct(){
+                console.log(this.product);
+            }
         }
+
     }
 </script>
